@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="即刻天气测试计划" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="即刻天气test-Android" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.delayedStart">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="天气测试" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+ &quot;app&quot;: {&#xd;
+  &quot;name&quot;: &quot;即刻天气&quot;,&#xd;
+  &quot;id&quot;: &quot;10064&quot;,&#xd;
+  &quot;bundle&quot;: &quot;com.ireadercity.zhwll&quot;,&#xd;
+  &quot;ver&quot;: &quot;1.1&quot;&#xd;
+ },&#xd;
+ &quot;device&quot;: {&#xd;
+  &quot;devicetype&quot;: 1,&#xd;
+  &quot;openudid&quot;: &quot;abcde1232&quot;,&#xd;
+  &quot;imei&quot;: &quot;test10&quot;,&#xd;
+  &quot;oaid&quot;: &quot;77663df3-7fbb-0f46-cfdd-7eefeffb8985&quot;,&#xd;
+  &quot;imsi&quot;: &quot;460028109655139&quot;,&#xd;
+  &quot;mac&quot;: &quot;44:04:44:d2:ad:99&quot;,&#xd;
+  &quot;androidid&quot;: &quot;test10&quot;,&#xd;
+  &quot;ppi&quot;: &quot;286&quot;,&#xd;
+  &quot;orientation&quot;: &quot;0&quot;,&#xd;
+  &quot;connectiontype&quot;: 2,&#xd;
+  &quot;geo&quot;: {&#xd;
+   &quot;lat&quot;: 68.01,&#xd;
+   &quot;lon&quot;: 178.13&#xd;
+  },&#xd;
+  &quot;h&quot;: &quot;1136&quot;,&#xd;
+  &quot;model&quot;: &quot;OPPO R9s&quot;,&#xd;
+  &quot;make&quot;: &quot;Xiaomi&quot;,&#xd;
+  &quot;lan&quot;: &quot;zh-Hans&quot;,&#xd;
+  &quot;os&quot;: &quot;Android&quot;,&#xd;
+  &quot;osv&quot;: &quot;14.0&quot;,&#xd;
+  &quot;ip&quot;: &quot;101.226.168.228&quot;,&#xd;
+  &quot;carrier&quot;: &quot;46001&quot;,&#xd;
+  &quot;ua&quot;: &quot;Mozilla\\/5.0 (Linux; Android 6.0.1; MI 4LTE Build\\/MMB29M; wv) AppleWebKit\\/537.36 (KHTML, like Gecko) Version\\/4.0 Chrome\\/57.0.2987.132 Mobile Safari\\/537.36&quot;,&#xd;
+  &quot;w&quot;: &quot;640&quot;&#xd;
+ },&#xd;
+ &quot;id&quot;: &quot;96a351fdc4a517d9375afdb4c67c83c3&quot;,&#xd;
+ &quot;imp&quot;: [{&#xd;
+  &quot;id&quot;: &quot;&quot;,&#xd;
+  &quot;type&quot;: 5,&#xd;
+  &quot;bidtype&quot;:0,&#xd;
+  &quot;bidfloor&quot;:0,&#xd;
+  &quot;ext&quot;: {&#xd;
+   &quot;atype&quot;:3&#xd;
+  },&#xd;
+  &quot;nativead&quot;: {&#xd;
+   &quot;assets&quot;: [{&#xd;
+    &quot;id&quot;: &quot;1-8&quot;,&#xd;
+    &quot;h&quot;: 720,&#xd;
+    &quot;w&quot;: 1280,&#xd;
+    &quot;ext&quot;: {&#xd;
+     &quot;image&quot;: {&#xd;
+      &quot;mimes&quot;: [&quot;jpg&quot;, &quot;jpeg&quot;, &quot;png&quot;, &quot;gif&quot;],&#xd;
+      &quot;w&quot;: 1280,&#xd;
+      &quot;h&quot;: 720&#xd;
+     }&#xd;
+    }&#xd;
+   }],&#xd;
+   &quot;template_ids&quot;: [&quot;1-1&quot;]&#xd;
+  },&#xd;
+  &quot;pid&quot;: &quot;android_jiketianqi&quot;&#xd;
+ }],&#xd;
+ &quot;test&quot;: 0,&#xd;
+ &quot;tmax&quot;: 100,&#xd;
+ &quot;user&quot;: {&#xd;
+  &quot;gender&quot;: &quot;M&quot;&#xd;
+ }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">test-api.atomhike.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/v1/new_jiketianqi/ads</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>true</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>true</responseData>
+                <samplerData>true</samplerData>
+                <xml>true</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>true</responseHeaders>
+                <requestHeaders>true</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <fileName>true</fileName>
+                <hostname>true</hostname>
+                <threadCounts>true</threadCounts>
+                <sampleCount>true</sampleCount>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

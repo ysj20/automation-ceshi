@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF8"?>
+<project name="ant-jmeter" default="run" basedir=".">
+    <property name="jmeterPath" value="D:\apache-jmeter-5.1.1"/>
+    <property name="mail_host" value="smtp.163.com"/>
+    <property name="mail_port" value="465"/>
+    <property name="username" value="XXXXXX@163.com"/>
+    <property name="password" value="1234678"/>
+    <property name="mail_from" value="13XXXXXXXX6@163.com"/>
+    <property name="mail_to" value="l@globw.com,lua@gobw.com"/>
+    <property name="mailsubject" value="接口自动化测试报告"/>
+    <property name="message" value="今日接口测试任务已执行完毕，详情请查看附件！！!"/>
+    
+    <tstamp><format property="time" pattern="yyyyMMddHHmm" /></tstamp>
+    
+    <!-- jmeter环境配置 -->
+    <property name="jmeter.home" value="E:\jemter\apache-jmeter-5.4.3"/>
+    <!-- jtl测试结果存放路径 -->
+    <property name="jmeter.result.jtl.dir" value="C:\Users\dkc\.jenkins\workspace\test\jtl"/>
+    <!-- html测试结果存放路径 -->
+    <property name="jmeter.result.html.dir" value="C:\Users\dkc\.jenkins\workspace\test\html"/>
+   
+    <!-- 生成报告前缀 -->
+    <property name="ReportName" value="DetailsReport"/>
+    <property name="ReportName2" value="SummaryReport"/>
+    
+    <property name="jmeter.result.jtlName" value="${jmeter.result.jtl.dir}/${ReportName}.jtl"/>
+    <property name="jmeter.result.htmlName" value="${jmeter.result.html.dir}/${ReportName}.html"/>
+    <property name="jmeter.result.htmlName2" value="${jmeter.result.html.dir}/${ReportName2}.html"/>
+
+    <target name="run">
+        <antcall target="test"/>
+        <antcall target="report"/>
+<!--        <antcall target="sendEmail"/>-->
+    </target>
+       
+    <!-- 执行接口测试 -->
+    <target name="test">
+        <echo>执行接口自动化测试用例</echo>
+        <taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" />
+        <jmeter jmeterhome="${jmeter.home}" resultlog="${jmeter.result.jtlName}">
+            <!-- 声明要运行的脚本“*.jmx”指包含此目录下的所有jmeter脚本-->
+            <testplans dir="C:\Users\dkc\.jenkins\workspace\test" includes="*.jmx" />
+             <property name="jmeter.save.saveservice.output_format" value="xml"/>
+        </jmeter>
+    </target>
+    
+    <!-- 解决报告中NAN字段显示问题-->
+    <path id="xslt.classpath">
+        <fileset dir="${jmeter.home}/lib" includes="xalan*.jar" />
+        <fileset dir="${jmeter.home}/lib" includes="serializer*.jar" />    
+    </path>
+    
+    <target name="report">
+        <echo>生成接口自动化测试报告</echo>
+            <tstamp> <format property="report.datestamp" pattern="yyyy/MM/dd HH:mm" /></tstamp>
+            <xslt 
+                  classpathref="xslt.classpath"
+                  force="true"
+                  
+                  in="${jmeter.result.jtlName}"
+                  out="${jmeter.result.htmlName}"
+		  style = "${jmeter.home}/extras/jmeter_results_810.xsl">
+                  <param name="titleReport" expression="${mailsubject}"/> 
+                  <param name="dateReport" expression="${report.datestamp}"/>
+            </xslt>   
+                  
+           <xslt
+                  classpathref="xslt.classpath"
+                  force="true"
+
+                  in="${jmeter.result.jtlName}"
+                  out="${jmeter.result.htmlName2}"
+                  style = "${jmeter.home}/extras/jmeter-results-detail-report_30.xsl">
+                  <param name="titleReport" expression="${mailsubject}"/>
+                  <param name="dateReport" expression="${report.datestamp}"/>
+            </xslt>
+            <!-- 因为上面生成报告的时候，不会将相关的图片也一起拷贝至目标目录，所以，需要手动拷贝 -->  
+            <copy file="${jmeter.home}/extras/expand.png" tofile="${jmeter.result.html.dir}/expand.png" />
+            <copy file="${jmeter.home}/extras/collapse.png" tofile="${jmeter.result.html.dir}/collapse.png" />
+            
+    </target>
+
+
+</project>
