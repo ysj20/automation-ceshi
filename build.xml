@@ -13,7 +13,7 @@
     <tstamp><format property="time" pattern="yyyyMMddHHmm" /></tstamp>
     
     <!-- jmeter环境配置 -->
-    <property name="jmeter.home" value="C:\Users\miss\apache-jmeter"/>
+    <property name="jmeter.home" value="C:\Users\miss\apache-jmeter-5.4.3"/>
     <!-- jtl测试结果存放路径 -->
     <property name="jmeter.result.jtl.dir" value="C:\Users\miss\.jenkins\workspace\test\jtl"/>
     <!-- html测试结果存放路径 -->
