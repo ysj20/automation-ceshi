@@ -15,9 +15,9 @@
     <!-- jmeter环境配置 -->
     <property name="jmeter.home" value="C:\Users\miss\apache-jmeter-5.4.3"/>
     <!-- jtl测试结果存放路径 -->
-    <property name="jmeter.result.jtl.dir" value="C:\Users\miss\.jenkins\workspace\test\jtl"/>
+    <property name="jmeter.result.jtl.dir" value="C:\Users\miss\.jenkins\workspace\Interface automation\jtl"/>
     <!-- html测试结果存放路径 -->
-    <property name="jmeter.result.html.dir" value="C:\Users\miss\.jenkins\workspace\test\html"/>
+    <property name="jmeter.result.html.dir" value="C:\Users\miss\.jenkins\workspace\Interface automation\html"/>
    
     <!-- 生成报告前缀 -->
     <property name="ReportName" value="DetailsReport"/>
@@ -39,7 +39,7 @@
         <taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" />
         <jmeter jmeterhome="${jmeter.home}" resultlog="${jmeter.result.jtlName}">
             <!-- 声明要运行的脚本“*.jmx”指包含此目录下的所有jmeter脚本-->
-            <testplans dir="C:\Users\miss\.jenkins\workspace\test" includes="*.jmx" />
+            <testplans dir="C:\Users\miss\.jenkins\workspace\Interface automation" includes="*.jmx" />
              <property name="jmeter.save.saveservice.output_format" value="xml"/>
         </jmeter>
     </target>
